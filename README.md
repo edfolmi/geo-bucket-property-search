@@ -31,7 +31,70 @@ This system solves this by grouping nearby properties into geo-buckets.
 
 - Python 3.11 or higher
 - PostgreSQL 15+ with PostGIS extension
+- GDAL library (required for spatial operations)
 - pip and virtualenv
+
+## 📌 GDAL Installation & Configuration
+
+⚠️ **IMPORTANT**: This project depends on GDAL for spatial operations. You must install GDAL system library before installing Python dependencies.
+
+### 🐧 Linux (Ubuntu/Debian)
+```bash
+# Install GDAL
+sudo apt update
+sudo apt install -y gdal-bin libgdal-dev
+
+# Find the GDAL library path
+gdal-config --libs
+```
+
+Set the GDAL library path (add to `~/.bashrc` or `~/.zshrc`):
+```bash
+# Example path - yours may differ
+export GDAL_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/libgdal.so
+
+# Apply changes
+source ~/.bashrc
+```
+
+### 🍎 macOS (Homebrew)
+```bash
+# Install GDAL
+brew install gdal
+
+# Set GDAL library path
+export GDAL_LIBRARY_PATH=$(brew --prefix gdal)/lib/libgdal.dylib
+
+# Add to ~/.zshrc or ~/.bash_profile for persistence
+echo 'export GDAL_LIBRARY_PATH=$(brew --prefix gdal)/lib/libgdal.dylib' >> ~/.zshrc
+source ~/.zshrc
+```
+
+### 🪟 Windows (OSGeo4W)
+
+1. Download and install [OSGeo4W](https://trac.osgeo.org/osgeo4w/)
+2. During installation, select **GDAL** from available packages
+3. Set environment variable (PowerShell as Administrator):
+```powershell
+setx GDAL_LIBRARY_PATH "C:\OSGeo4W\bin\gdal312.dll"
+```
+
+**Note**: DLL version number may vary (e.g., `gdal312.dll`, `gdal313.dll`). Check your `C:\OSGeo4W\bin\` directory.
+
+4. **Restart your terminal** after setting the environment variable
+
+### ✅ Verify GDAL Installation
+```bash
+# Check GDAL version
+gdal-config --version
+
+# On Windows (OSGeo4W Shell):
+gdalinfo --version
+
+# Verify environment variable is set
+echo $GDAL_LIBRARY_PATH  # Linux/macOS
+echo %GDAL_LIBRARY_PATH%  # Windows CMD
+```
 
 ## Installation
 
