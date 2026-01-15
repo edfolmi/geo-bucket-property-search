@@ -7,7 +7,27 @@ Get up and running in 5 minutes!
 - [ ] Python 3.11+ installed
 - [ ] PostgreSQL 15+ installed
 - [ ] PostGIS extension available
+- [ ] GDAL library installed
 - [ ] Git installed
+
+## GDAL Quick Setup
+
+**Before installing Python packages, install GDAL:**
+```bash
+# Linux
+sudo apt install gdal-bin libgdal-dev
+export GDAL_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu/libgdal.so
+
+# macOS
+brew install gdal
+export GDAL_LIBRARY_PATH=$(brew --prefix gdal)/lib/libgdal.dylib
+
+# Verify
+gdal-config --version
+```
+
+See README.md for detailed GDAL setup instructions.
+
 
 ## Setup Steps
 
